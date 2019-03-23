@@ -1,5 +1,8 @@
 #html-files
 index.html
 
-#css-files
-styles.css
+#scss-files
+styles.scss
+
+#js-files
+index.js
