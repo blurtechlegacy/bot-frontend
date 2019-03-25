@@ -21,7 +21,7 @@ class DBPedia extends Component {
     const self = this;
     const { request } = self.props.steps;
     axios
-      .post("http://api.nuckles.blur.tech/api/messages", {
+      .post("http://api.wooster.blur.tech/api/messages", {
         message: request.message
       })
       .then(function(response) {
