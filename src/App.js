@@ -78,6 +78,8 @@ DBPedia.defaultProps = {
 
 const App = () => (
   <ChatBot
+    headerTitle="NUCKles"
+    placeholder="Введите сообщение..."
     steps={[
       {
         id: "1",
