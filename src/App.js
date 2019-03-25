@@ -19,10 +19,10 @@ class DBPedia extends Component {
 
   request = () => {
     const self = this;
-    console.log(self.props);
+    const { request } = self.props.steps;
     axios
       .post("http://api.nuckles.blur.tech/api/messages", {
-        message: "Привет"
+        message: request.message
       })
       .then(function(response) {
         self.setState({
@@ -39,42 +39,6 @@ class DBPedia extends Component {
     this.request();
   }
 
-  // componentWillMount() {
-  //   const self = this;
-  //   const { steps } = this.props;
-  //   const search = steps.search.value;
-  //   const endpoint = encodeURI("https://dbpedia.org");
-  //   const query = encodeURI(`
-  //     select * where {
-  //     ?x rdfs:label "${search}"@en .
-  //     ?x rdfs:comment ?comment .
-  //     FILTER (lang(?comment) = 'en')
-  //     } LIMIT 100
-  //   `);
-
-  //   const queryUrl = `https://dbpedia.org/sparql/?default-graph-uri=${endpoint}&query=${query}&format=json`;
-
-  //   const xhr = new XMLHttpRequest();
-
-  //   xhr.addEventListener("readystatechange", readyStateChange);
-
-  //   function readyStateChange() {
-  //     if (this.readyState === 4) {
-  //       const data = JSON.parse(this.responseText);
-  //       const bindings = data.results.bindings;
-  //       console.log(data);
-  //       if (bindings && bindings.length > 0) {
-  //         self.setState({ loading: false, result: bindings[0].comment.value });
-  //       } else {
-  //         self.setState({ loading: false, result: "Not found." });
-  //       }
-  //     }
-  //   }
-
-  //   xhr.open("GET", queryUrl);
-  //   xhr.send();
-  // }
-
   triggetNext() {
     this.setState({ trigger: false }, () => {
       this.props.triggerNextStep();
@@ -83,6 +47,7 @@ class DBPedia extends Component {
 
   render() {
     const { trigger, loading, result } = this.state;
+
     return (
       <div className="dbpedia">
         {loading ? <Loading /> : result}
@@ -93,9 +58,7 @@ class DBPedia extends Component {
               marginTop: 20
             }}
           >
-            {!trigger && (
-              <button onClick={() => this.triggetNext()}>Search Again</button>
-            )}
+            {trigger && this.triggetNext()}
           </div>
         )}
       </div>
@@ -118,19 +81,20 @@ const App = () => (
     steps={[
       {
         id: "1",
-        message: "Type something to search on Wikipédia. (Ex.: Brazil)",
-        trigger: "2"
+        message: ")",
+        trigger: "request"
       },
       {
-        id: "2",
+        id: "request",
         user: true,
         trigger: "3"
       },
       {
         id: "3",
+        asMessage: true,
         component: <DBPedia />,
         waitAction: true,
-        trigger: "1"
+        trigger: "request"
       }
     ]}
   />
