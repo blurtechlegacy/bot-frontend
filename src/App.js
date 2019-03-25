@@ -55,7 +55,7 @@ class DBPedia extends Component {
           <div
             style={{
               textAlign: "center",
-              marginTop: 20
+              marginTop: 5
             }}
           >
             {trigger && this.triggetNext()}
@@ -83,7 +83,7 @@ const App = () => (
     steps={[
       {
         id: "1",
-        message: "Привет. Я бот Wooster!",
+        message: "Напиши мне что-нибудь, не стесняйся!",
         trigger: "request"
       },
       {
