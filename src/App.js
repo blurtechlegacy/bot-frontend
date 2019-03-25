@@ -83,7 +83,7 @@ const App = () => (
     steps={[
       {
         id: "1",
-        message: ")",
+        message: "Привет. Я бот NUCKles!",
         trigger: "request"
       },
       {
