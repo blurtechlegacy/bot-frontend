@@ -16,5 +16,6 @@ code {
 #root{
 	width: 350px;
 	margin-left: auto;
-  margin-right: auto;
+  	margin-right: auto;
+	margin-top: 15px;
 }
