@@ -78,12 +78,12 @@ DBPedia.defaultProps = {
 
 const App = () => (
   <ChatBot
-    headerTitle="NUCKles"
+    headerTitle="Wooster"
     placeholder="Введите сообщение..."
     steps={[
       {
         id: "1",
-        message: "Привет. Я бот NUCKles!",
+        message: "Привет. Я бот Wooster!",
         trigger: "request"
       },
       {
